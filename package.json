@@ -10,7 +10,6 @@
         "build": "node build/build.js"
     },
     "dependencies": {
-        "css-loader": "^0.28.11",
         "element-ui": "^2.3.8",
         "style-loader": "^0.21.0",
         "stylus": "0.52.4",
