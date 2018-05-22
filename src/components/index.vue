@@ -16,7 +16,7 @@
 
 							</div>
 							<div class="view">
-								<router-link to="">阅读全文</router-link>
+								<router-link to="/detail">阅读全文</router-link>
 								
 							</div>
 							
@@ -43,7 +43,8 @@
 <script>
     import header from './header'
     import commonFooter from './footer'
-    import sideNav from './sideNav'
+	import sideNav from './sideNav'
+	
     export default {
         name: 'index',
         data() {
@@ -71,6 +72,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 ul{padding: 0;margin: 0;}
 .container {max-width: 1180px;}
 .left {height: 100%;min-height: 100%;padding: 0;}
