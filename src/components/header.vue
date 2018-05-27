@@ -11,14 +11,14 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="#">MrZhou</a>
+						<router-link class="navbar-brand" to="/index">MrZhou</router-link>
 					</div>
 				
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
-							<li class="nav_active"><a href="#"><i class="glyphicon glyphicon-home"></i>首页</a></li>
-							<li><a href="#"><i class="glyphicon glyphicon-user"></i>关于我</a></li>
+							<li><router-link to="/index"><i class="glyphicon glyphicon-home"></i>首页</router-link></li>
+							<li><router-link to="/about"><i class="glyphicon glyphicon-user"></i>关于我</router-link></li>
 						</ul>
 					
 					</div><!-- /.navbar-collapse -->
@@ -30,7 +30,15 @@
 
 <script>
     export default {
-        
+        data () {
+          return {
+            
+          };
+        },
+        mounted(){
+        	
+        }
+
     }
 </script>
 
@@ -45,6 +53,6 @@
 }
 /* .navbar-nav li{padding:0 10px;} */
 .navbar-nav li i{margin-right: 8px;}
-.navbar-nav .nav_active a{color:#CC6666;}
+.navbar-nav  a.nav_active{color:#CC6666;}
 .navbar-default .navbar-brand{background-color: #CC6666;color: #fff;}
 </style>

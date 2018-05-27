@@ -1,6 +1,6 @@
 <template>
 	<div class="">
-		<nav-header></nav-header>
+		<nav-header :status="0"></nav-header>
 		<div class="container">
 			<div class="row">
 				<div class="left  col-md-8">
@@ -45,6 +45,7 @@
     import commonFooter from './footer'
 	import sideNav from './sideNav'
 	
+	
     export default {
         name: 'index',
         data() {
@@ -60,6 +61,15 @@
             navHeader: header,
             commonFooter: commonFooter,
             sideNav: sideNav
+		},
+		created(){
+			// console.log("host:",this.URL)
+			// this.$http.get(this.URL+'article').then(function(res){
+			// 	console.log("res:",res.data)
+			// }).catch()
+		},
+		mounted(){
+
 		},
 		methods:{
 			pageFun:function(val){
