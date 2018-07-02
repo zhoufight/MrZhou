@@ -1,33 +1,33 @@
 <template>
 	<div class="">
-		<nav-header :status="0"></nav-header>
+		<nav-header></nav-header>
 		<div class="container">
-			<div class="row">
+			<div class="row"  v-loading.fullscreen.lock="loading">
 				<div class="left  col-md-8">
 					<ul class="list">
-						<li class="clearfix bx" v-for="(item,index) in listData" :key="item.articelId">
+						<li class="clearfix bx"  v-for="(item,index) in listData" :key="item.id">
 							<div class="list-tit"><span class="tit-icon">web技术<i class="glyphicon glyphicon-triangle-right"></i></span><span>{{item.title}}</span></div>
-							<span class="push">发表于{{item.pushTime}}</span>
+							<span class="push">发表于{{item.time|time}}</span>
 							<div class="list-con fx">
-								<div class="icon"><img :src="item.imgPath" alt=""></div>
+								<div class="icon"><img :src="'http://mydandan.com//public/static/'+[item.pic !=''?item.pic:'index/images/error.png']" alt=""></div>
 								<div class="subtit">
-									<p>{{item.subTitle}}</p>
+									<p>{{item.desc}}</p>
 								</div>
 
 							</div>
 							<div class="view">
-								<router-link to="/detail">阅读全文</router-link>
+								<router-link :to="{ name: 'detail',query:{id:item.id}}">阅读全文</router-link>
 								
 							</div>
 							
 						</li>
 					</ul>
-					<div class="page-div">
+					<div class="page-div" v-show="listData.length > 0">
 						<el-pagination
 							background
 							@current-change="pageFun"
 							layout="prev, pager, next"
-							:total="20">
+							:total="pageTotal">
 						</el-pagination>
 					</div>
 				</div>
@@ -50,11 +50,9 @@
         name: 'index',
         data() {
             return {
-				listData:[
-					{"articleId":"11","imgPath":require("./1.jpg"),"title":"vue2.0从安装到打包发布、Stylus安装","pushTime":"2018-5-20","subTitle":"在vue文件中的style标签上，有一个特殊的属性：scoped。当一个style标签拥有scoped属性时，它的CSS样式就只能作用于当前的组件，也就是说，该样式只能适用于当前组件元素。通过该属性，可以使得组件之间的样式不互相污染。如果一个项目中的所有style标签全部加上了scoped，相当于实现了样式的模块化。"},
-					{"articleId":"11","imgPath":require("./1.jpg"),"title":"vue2.0从安装到打包发布、Stylus安装","pushTime":"2018-5-20","subTitle":"在vue文件中的style标签上，有一个特殊的属性：scoped。当一个style标签拥有scoped属性时，它的CSS样式就只能作用于当前的组件，也就是说，该样式只能适用于当前组件元素。通过该属性，可以使得组件之间的样式不互相污染。如果一个项目中的所有style标签全部加上了scoped，相当于实现了样式的模块化。"},
-
-				]
+				listData:[],//文章列表
+				pageTotal:0,//文章总数
+				loading: true
             }
         },
         components: {
@@ -62,19 +60,29 @@
             commonFooter: commonFooter,
             sideNav: sideNav
 		},
+		
 		created(){
-			// console.log("host:",this.URL)
-			// this.$http.get(this.URL+'article').then(function(res){
-			// 	console.log("res:",res.data)
-			// }).catch()
+			
 		},
 		mounted(){
-
+			this.getArticleData(1);
 		},
 		methods:{
 			pageFun:function(val){
-				console.log(val)
-			}
+				this.getArticleData(val)
+			},
+			getArticleData:function(pageNum){
+				const url=this.URL+'public/index.php/index/index/getList';
+				const that=this;
+
+				this.$http.get(url,{params:{page:pageNum}}).then(function(res){
+					that.$data.listData=res.data.data;
+					that.$data.pageTotal=res.data.total;
+					that.$data.loading=false;
+					
+				}).catch(function(error){alert(error)})
+			},
+			
 		}
 
     }

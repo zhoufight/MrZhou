@@ -10,9 +10,11 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "array-includes": "^3.0.3",
     "axios": "^0.18.0",
     "css-loader": "^0.28.11",
     "element-ui": "^2.3.8",
+    "moment": "^2.22.2",
     "style-loader": "^0.21.0",
     "stylus": "0.52.4",
     "stylus-loader": "^2.5.0",

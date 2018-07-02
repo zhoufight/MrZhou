@@ -9,7 +9,7 @@
                     <ul>
                         <li><i class="fa fa-envelope-o"></i> 邮箱:374147621@qq.com</li>
                         <li><i class="fa fa-github"></i> gitHub:<a href="https://github.com/zhoufight">https://github.com/zhoufight</a></li>
-                        <li>博客宗旨：为了记录工作所遇到的问题及解决方法，并收藏一些大牛的文章及优秀的前端资源，以便在今后的工作中用的上。</li>
+                        <li>博客宗旨：为了记录工作所遇到的问题及解决方法，并收藏一些大牛的文章及优秀的前端资源，以便在今后的工作使用.</li>
                     </ul>
                 </div>
             </div>
@@ -17,28 +17,18 @@
         <!-- 优秀资源 -->
         <div class="goodSource section bx">
             <div class="tit">优秀资源</div>
-            <div class="con">
+            <div class="con clearfix">
                 <ul>
-                    <li><a href="http://f2er.club/" target="_bank">醉牛前端</a></li>
-                    <li><a href="https://www.qdfuns.com/" target="_bank">前端网</a></li>
-                    <li><a href="https://www.qdfuns.com/" target="_bank">前端网</a></li>
-                    <li><a href="https://www.qdfuns.com/" target="_bank">前端网</a></li>
-                    <li><a href="https://www.qdfuns.com/" target="_bank">前端网</a></li>
-                    <li><a href="https://www.qdfuns.com/" target="_bank">前端网</a></li>
+                    <li v-for="item in slideData" v-if="item.linkType == 1" :key="item.id"><a :href="item.url" target="_bank">{{item.title}}</a></li>
                 </ul>
             </div>
         </div>
         <!-- 友情链接 -->
         <div class="link section bx">
             <div class="tit">友情链接</div>
-            <div class="con">
+            <div class="con clearfix">
                 <ul>
-                    <li><a href="http://f2er.club/" target="_bank">醉牛前端</a></li>
-                    <li><a href="https://www.qdfuns.com/" target="_bank">前端网</a></li>
-                    <li><a href="https://www.qdfuns.com/" target="_bank">前端网</a></li>
-                    <li><a href="https://www.qdfuns.com/" target="_bank">前端网</a></li>
-                    <li><a href="https://www.qdfuns.com/" target="_bank">前端网</a></li>
-                    <li><a href="https://www.qdfuns.com/" target="_bank">前端网</a></li>
+                    <li v-for="item in slideData" v-if="item.linkType !=1"><a :href="item.url" target="_bank">{{item.title}}</a></li>
                 </ul>
             </div>
         </div>
@@ -47,7 +37,20 @@
 
 <script>
     export default {
-        
+        data () {
+          return {
+            slideData:[]
+          };
+        },
+        created:function(){
+            const url=this.URL+'public/index.php/index/links/index';
+            const that=this;
+
+            this.$http.get(url).then(function(res){
+                that.$data.slideData=res.data;
+                
+            }).catch(function(error){alert(error)})
+        }
     }
 </script>
 
@@ -55,10 +58,11 @@
 @media screen and (max-width:767px){
     .aboutMe{margin-top: 20px;}
 }
+
 .section{background-color: #fff;min-height: 200px;margin-bottom: 20px;}
 .tit{font-size: 16px;padding: 10px 10px;border-bottom: 1px solid #ebebeb;position: relative;}
 .tit:after{position:absolute;left:0;bottom:0;display: block;content: "";width: 30%;border-bottom: 1px solid #CC6666;}
-.con{padding:10px 10px;}
+.con{padding:16px 10px 10px;}
 .con li{float: left;margin-bottom: 10px;}
 .con a:hover{background-color: #CC6666;color: #fff;border: 1px solid #CC6666;}
 .con a{color: #959595;font-size: 12px;border: 1px solid #ebebeb;padding: 4px 8px;margin: 0 5px;text-decoration: none;}

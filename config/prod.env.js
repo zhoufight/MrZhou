@@ -1,5 +1,5 @@
 'use strict'
 module.exports = {
     NODE_ENV: '"production"',
-    API: '//http://www.mydandan.com/api'
+    API: '//http://mydandan.com/public/index.php/'
 }

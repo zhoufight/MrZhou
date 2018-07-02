@@ -18,7 +18,7 @@
 						<div class="section">
 							<dl>
 								<dt><i class="fa fa-snowflake-o"></i>关于博客</dt>
-								<dd><i class="fa fa-hand-o-right"></i>博客主要采用vue2.0+ElementUi+Bootstrap搭建，也是学习vue的一个成果吧</dd>
+								<dd><i class="fa fa-hand-o-right"></i>博客主要采用vue2.0+ElementUi+Bootstrap+thinkphp5搭建，也是学习vue的一个成果吧。</dd>
 								<dd><i class="fa fa-hand-o-right"></i>博客的内容是记录自己工作遇到的各种问题及解决方法，以及收藏一些大牛的经典文章，以便以后工作中遇到此类问题能及时定位解决方法。</dd>
 								
 							</dl>

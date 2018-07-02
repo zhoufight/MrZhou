@@ -11,7 +11,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<router-link class="navbar-brand" to="/index">MrZhou</router-link>
+						<router-link class="navbar-brand" to="/index"><img src="../assets/logo.png" height="90" width="285" alt=""></router-link>
 					</div>
 				
 					<!-- Collect the nav links, forms, and other content for toggling -->
@@ -20,7 +20,12 @@
 							<li><router-link to="/index"><i class="glyphicon glyphicon-home"></i>首页</router-link></li>
 							<li><router-link to="/about"><i class="glyphicon glyphicon-user"></i>关于我</router-link></li>
 						</ul>
-					
+						<form class="navbar-form navbar-right">
+					        <div class="form-group">
+					          	<input type="text" v-model="searchValue" class="form-control" placeholder="Search"  >
+					        	<span class="search-icon"><i @click="searchFun" class="el-icon-search"></i></span>
+					        </div>
+					    </form>
 					</div><!-- /.navbar-collapse -->
 				</div><!-- /.container-fluid -->
 			</nav>
@@ -32,11 +37,28 @@
     export default {
         data () {
           return {
-            
+            searchValue:'',
+            value:''
           };
         },
+        created(){
+
+        },
+        props:['keywords'],
         mounted(){
         	
+        },
+        methods:{
+        	searchFun:function(){
+        		var that=this;
+        		if (this.$data.searchValue == '') {
+        			return false;
+        		}else{
+        			this.$router.push({ name: 'search', params: { keywords: this.$data.searchValue }})
+        			
+        		}
+
+        	}
         }
 
     }
@@ -55,4 +77,9 @@
 .navbar-nav li i{margin-right: 8px;}
 .navbar-nav  a.nav_active{color:#CC6666;}
 .navbar-default .navbar-brand{background-color: #CC6666;color: #fff;}
+.navbar-brand img{max-height: 100%;width: 100px;}
+input{outline: none;color: #999;}
+.form-control:focus{border-color:#e7e7e7;-webkit-box-shadow:none;box-shadow: none;}
+.form-group{position: relative;}
+.search-icon{position: absolute;right: 10px;top:0;bottom: 0;font-size: 18px;color: #999;line-height: 34px;cursor: pointer;}
 </style>

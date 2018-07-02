@@ -25,4 +25,7 @@ a{text-decoration: none;}
 .navbar-default{border:none;background-color: #ffffff;}
 .bx{box-shadow: 0 1px 5px rgba(0,0,0,.08);}
 .fx{display: flex;}
+.navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover{background-color: #CC6666;}
+.clearfix{zoom:1;}
+.clearfix:after{content: "";display: block;clear:both;overflow: hidden;width: 0;height: 0;}
 </style>
